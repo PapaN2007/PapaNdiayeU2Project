@@ -41,7 +41,7 @@ public class LinearEquation {
         return yInt;
     }
     public String equation() {
-        String str = null;
+        String str = "";
         int remainder = 0;
         int slope = 0;
         int xSlope = (x2 - x1);
@@ -56,32 +56,48 @@ public class LinearEquation {
             }
         }if ((slope == -1) && (yInt == 0)) {
             str = ("y = " + " - x");
-        }else if ((slope == 1) && (yInt == 0)){
+        }else if ((slope == 1) && (yInt == 0)) {
             str = ("y = " + "x");
-        }
-        else if ((remainder == 0) && (yInt == 0)) {
-            str = ("y = " + slope + "x");
-        }else if (ySlope == 0) {
-            str = ("y = " + yInt);
         }else if (slope == 1) {
             str = ("y = " + "x + " + yInt);
 
         } else if (slope == -1) {
             str = ("y = " + "-x + " + yInt);
-
-        } else if ((ySlope < 0) && (xSlope < 0)) {
+        }
+        else if ((remainder == 0) && (slope > 0) && (yInt > 0)) {
+            str = ("y = " + slope + "x +" + yInt);
+        }
+        else if ((remainder == 0) && (slope > 0) && (yInt < 0)) {
+            str = ("y = " + slope + "x " + yInt);
+        }
+        else if ((remainder == 0) && (slope < 0) && (yInt > 0)) {
+            str = ("y = " + slope + "x +" + yInt);
+        }
+        else if ((remainder == 0) && (slope < 0) && (yInt < 0)) {
+            str = ("y = " + slope + "x " + yInt);
+        }
+        else if ((remainder == 0) && (yInt == 0)) {
+            str = ("y = " + slope + "x");
+        }
+        else if (ySlope == 0) {
+            str = ("y = " + (int) yInt);
+        }
+        else if ((ySlope < 0) && (xSlope < 0)) {
             ySlope *= -1;
             xSlope *= -1;
             str = ("y = " + ySlope + "/" + xSlope + "x + " + yInt);
-        } else if (xSlope < 0) {
+        }
+        else if (xSlope < 0) {
             xSlope *= -1;
             ySlope *= -1;
             str = ("y = " + ySlope + "/" + xSlope + "x + " + yInt);
 
-        } else if (yInt == 0) {
+        }
+        else if (yInt == 0) {
             System.out.println("true");
             str = ("y = " + ySlope + "/" + xSlope + "x");
-        } else if (yInt < 0) {
+        }
+        else if (yInt < 0) {
             yInt *= -1;
             str = ("y = " + ySlope + "/" + xSlope + "x - " + yInt);
 
@@ -92,10 +108,10 @@ public class LinearEquation {
 
         return str;
     }
-    public void coordinateForX(double x){
+    public String coordinateForX(double x){
         double y = (slope() * x) + yIntercept();
         String cord = ("(" + x + "," + y + ")");
-        System.out.println("The point on the line is " + cord);
+        return cord;
     }
     public String lineInfo(){
         String info = "";

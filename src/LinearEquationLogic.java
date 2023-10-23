@@ -20,17 +20,6 @@ public class LinearEquationLogic {
 
     public void start() {
         getCordinate();
-        getData();
-        System.out.println(" ");
-        newCord();
-        newContinue();
-    }
-    public void keepGoing(){
-        getCordinate();
-        getData();
-        System.out.println(" ");
-        newCord();
-        newContinue();
     }
 
 
@@ -56,8 +45,12 @@ public class LinearEquationLogic {
         if ((x1 - x2) == 0){
             System.out.println("These points are on a vertical line: x = " + x1);
             newContinue();
-        }else {
+        }else{
             data = new LinearEquation(x1, y1, x2, y2);
+            getData();
+            System.out.println(" ");
+            newCord();
+            newContinue();
         }
     }
 
@@ -72,19 +65,18 @@ public class LinearEquationLogic {
         double newX = myScanner.nextDouble();
         myScanner.nextLine();
         System.out.println(" ");
-        data.coordinateForX(newX);
+        System.out.println("The point on the line is " + data.coordinateForX(newX));
     }
     private void newContinue(){
-        boolean letsContinue = false;
         System.out.print("Would you like to enter another pair of coordinates? y/n: ");
         String answer = myScanner.nextLine();
         if (answer.equals("y")){
-            letsContinue = true;
-        }
-        if(letsContinue){
-            System.out.println("Thank you for using the slope calculator, goodbye!");
+            start();
         }else{
-            keepGoing();
+            ending();
         }
+    }
+    private void ending(){
+        System.out.println("Thank you for using the slope calculator, goodbye!");
     }
 }
